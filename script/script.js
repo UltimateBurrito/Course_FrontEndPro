@@ -12,11 +12,11 @@ do {
         case ('/'):
             break;
         default:
-            operator = true;
+            operator = null;
             alert('Некоректное значение! Только + - * /');
     }
 }
-while (operator == true);
+while (operator == null);
 
 do {
     operandQuantity = prompt('Сколько операндов хотите использовать?', '');
@@ -24,13 +24,20 @@ do {
 while (operandQuantity <= 1);
 
 for (i = 0; i < operandQuantity; i++) {
+    operandValue = +prompt('Введите значение операнда', '');
     if (i <= 0) {
-        operandValue = prompt('Введите значение операнда', '');
         expression = operandValue;
     } else {
-        operandValue = prompt('Введите значение операнда', '');
-        expression = expression + operator + operandValue;
+        if (operator == '+') {
+            expression = expression + operandValue;
+        } else if (operator == '-') {
+            expression = expression - operandValue;
+        } else if (operator == '*') {
+            expression = expression * operandValue;
+        } else if (operator == '/') {
+            expression = expression / operandValue;
+        }
     }
 }
 
-alert(eval(expression));
+alert(expression)
